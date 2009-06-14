@@ -3,22 +3,26 @@ package pl.lims.client;
 import pl.lims.client.tabs.ConfigurationTab;
 import pl.lims.client.tabs.IncidentsTab;
 
-import com.google.gwt.user.client.ui.HorizontalPanel;
-import com.google.gwt.user.client.ui.TabPanel;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
+import com.extjs.gxt.ui.client.widget.TabItem;
+import com.extjs.gxt.ui.client.widget.TabPanel;
 
-public class Tabs extends HorizontalPanel
+public class Tabs extends LayoutContainer
 {
-	private TabPanel tabs = new TabPanel();
-
-	@Override
-	protected void onLoad()
+	public Tabs()
 	{
-		tabs.setWidth("600px");
-
-		tabs.add(new ConfigurationTab(), "Configuration", true);
-		tabs.add(new IncidentsTab(), "Incidents", true);
-		tabs.selectTab(0);
+		TabPanel folder = new TabPanel();
+		folder.setWidth(600);
+		folder.setHeight(600);
 		
-		this.add(tabs);
+		TabItem configTab = new TabItem("Configuration");
+		configTab.add(new ConfigurationTab());
+		folder.add(configTab);
+		
+		TabItem incidentsTab = new TabItem("Incidents");
+		incidentsTab.add(new IncidentsTab());
+		folder.add(incidentsTab);
+		
+		add(folder);
 	}
 }

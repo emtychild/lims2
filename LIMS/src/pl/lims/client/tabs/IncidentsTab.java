@@ -1,6 +1,6 @@
 package pl.lims.client.tabs;
 
-import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 
 public class IncidentsTab extends HorizontalPanel
