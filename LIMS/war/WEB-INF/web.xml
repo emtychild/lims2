@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+  <!-- Default page to serve -->
+  <welcome-file-list>
+    <welcome-file>LIMS.html</welcome-file>
+  </welcome-file-list>
+  
+  <!-- Servlets -->
+  <servlet>
+    <servlet-name>greetServlet</servlet-name>
+    <servlet-class>pl.lims.server.GreetingServiceImpl</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>imanager</servlet-name>
+    <servlet-class>pl.lims.server.IncidentManagerImpl</servlet-class>
+  </servlet>
+    <servlet>
+    <servlet-name>setupManager</servlet-name>
+    <servlet-class>pl.lims.server.SetupManagerImpl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>greetServlet</servlet-name>
+    <url-pattern>/lims/greet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>imanager</servlet-name>
+    <url-pattern>/lims/imanager</url-pattern>
+  </servlet-mapping>
+<servlet-mapping>
+    <servlet-name>setupManager</servlet-name>
+    <url-pattern>/lims/setupManager</url-pattern>
+  </servlet-mapping>
+</web-app>
