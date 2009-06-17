@@ -7,7 +7,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 
-import pl.lims.model.Status;
+import pl.lims.client.common.model.Status;
 import pl.lims.server.database.PMF;
 
 public class StatusDAO
