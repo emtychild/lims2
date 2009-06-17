@@ -1,4 +1,4 @@
-package pl.lims;
+package pl.lims.server.database;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManagerFactory;

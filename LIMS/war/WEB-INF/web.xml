@@ -12,6 +12,10 @@
   
   <!-- Servlets -->
   <servlet>
+    <servlet-name>userService</servlet-name>
+    <servlet-class>pl.lims.server.UserServiceImpl</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>greetServlet</servlet-name>
     <servlet-class>pl.lims.server.GreetingServiceImpl</servlet-class>
   </servlet>
@@ -32,8 +36,12 @@
     <servlet-name>imanager</servlet-name>
     <url-pattern>/lims/imanager</url-pattern>
   </servlet-mapping>
-<servlet-mapping>
+ <servlet-mapping>
     <servlet-name>setupManager</servlet-name>
     <url-pattern>/lims/setupManager</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>userService</servlet-name>
+    <url-pattern>/lims/user</url-pattern>
   </servlet-mapping>
 </web-app>
