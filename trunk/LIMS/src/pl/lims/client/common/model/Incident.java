@@ -88,22 +88,22 @@ public class Incident implements Serializable, ModelData
 		this.status = status;
 	}
 
-	public Long getImpact()
+	public int getImpact()
 	{
 		return impact;
 	}
 
-	public void setImpact(Long impact)
+	public void setImpact(int impact)
 	{
 		this.impact = impact;
 	}
 
-	public Long getUrgency()
+	public int getUrgency()
 	{
 		return urgency;
 	}
 
-	public void setUrgency(Long urgency)
+	public void setUrgency(int urgency)
 	{
 		this.urgency = urgency;
 	}

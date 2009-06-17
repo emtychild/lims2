@@ -37,11 +37,12 @@ public class StatusDAO
 		}
 		return names;
 	}
+	
 	public String addStatus(String name)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-		Status s = new Status();
-		s.setName(name);
+		Status s = new Status(name);
+
 		try
 		{
 			pm.makePersistent(s);

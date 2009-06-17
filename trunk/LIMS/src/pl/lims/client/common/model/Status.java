@@ -8,7 +8,7 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
-@PersistenceCapable(identityType = IdentityType.DATASTORE)
+@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class Status implements Serializable
 {
 
@@ -18,30 +18,16 @@ public class Status implements Serializable
 	private static final long	serialVersionUID	= 1L;
 
 	@PrimaryKey
-	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Long				id;
+	private String						name;
 
-	@Persistent
-	String						name;
-
-	public Long getId()
+	public Status(){}
+	public Status(String name)
 	{
-		return id;
+		this.name  = name;
 	}
-
-	public void setId(Long id)
-	{
-		this.id = id;
-	}
-
 	public String getName()
 	{
 		return name;
-	}
-
-	public void setName(String name)
-	{
-		this.name = name;
 	}
 
 }
