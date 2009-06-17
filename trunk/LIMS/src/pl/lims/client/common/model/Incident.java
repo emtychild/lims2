@@ -66,8 +66,6 @@ public class Incident implements Serializable, ModelData
 		this.description = description;
 	}
 
-	
-
 	public String getCategory()
 	{
 		return category;
@@ -113,6 +111,9 @@ public class Incident implements Serializable, ModelData
 	{
 		if(property.equals("name")) return (X) name;
 		if(property.equals("status"))return (X) status;
+		if(property.equals("category"))return (X) category;
+		if(property.equals("urgency"))return (X) new Integer( urgency);
+		if(property.equals("impact"))return (X) new Integer(impact);
 		return null;
 		
 	}
