@@ -108,8 +108,7 @@ public class User implements Serializable, ModelData
 	//@Override
 	public <X> X remove(String property)
 	{
-		// TODO Auto-generated method stub
-		return null; //WTF ? 
+		return null;
 	}
 
 	//@Override
