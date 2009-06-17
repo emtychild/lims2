@@ -1,4 +1,4 @@
-package pl.lims.model;
+package pl.lims.client.common.model;
 
 import java.io.Serializable;
 

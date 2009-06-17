@@ -72,7 +72,7 @@ public class User implements Serializable, ModelData
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
+	//@Override
 	public <X> X get(String property)
 	{
 		if(property.equals("name"))
@@ -84,7 +84,7 @@ public class User implements Serializable, ModelData
 		return null;
 	}
 
-	@Override
+	//@Override
 	public Map<String, Object> getProperties()
 	{
 		Map<String, Object> properties = new HashMap<String, Object>();
@@ -99,20 +99,20 @@ public class User implements Serializable, ModelData
 	{
 		Collections.addAll(propertiesNames,"name","email","userType");
 	}
-	@Override
+	//@Override
 	public Collection<String> getPropertyNames()
 	{
 		return propertiesNames;
 	}
 
-	@Override
+	//@Override
 	public <X> X remove(String property)
 	{
 		// TODO Auto-generated method stub
 		return null; //WTF ? 
 	}
 
-	@Override
+	//@Override
 	public <X> X set(String property, X value)
 	{
 		// TODO Auto-generated method stub

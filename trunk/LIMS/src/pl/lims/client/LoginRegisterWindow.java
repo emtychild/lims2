@@ -100,12 +100,12 @@ public class LoginRegisterWindow extends Window
 				}
 				
 				userService.register(name, pass, email, new AsyncCallback<UserLoginRegisterResponse>(){
-					@Override
+					//@Override
 					public void onFailure(Throwable caught)
 					{
 						Info.display("Error while registering account!",caught.getMessage());
 					}
-					@Override
+					//@Override
 					public void onSuccess(UserLoginRegisterResponse result)
 					{
 						if(!result.isSuccess())

@@ -4,8 +4,8 @@ import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 
+import pl.lims.client.common.model.Incident;
 import pl.lims.client.services.GreetingService;
-import pl.lims.model.Incident;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 

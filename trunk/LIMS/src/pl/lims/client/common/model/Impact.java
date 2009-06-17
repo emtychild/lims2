@@ -1,4 +1,4 @@
-package pl.lims.model;
+package pl.lims.client.common.model;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;

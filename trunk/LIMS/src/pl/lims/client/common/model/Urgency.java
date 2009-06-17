@@ -1,4 +1,4 @@
-package pl.lims.model;
+package pl.lims.client.common.model;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
@@ -7,23 +7,23 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable(identityType = IdentityType.DATASTORE)
-public class KnownIncident
+public class Urgency
 {
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long	id;
 
 	@Persistent
-	private String	solution;
+	String			urgency;
 
-	public String getSolution()
+	public String getUrgency()
 	{
-		return solution;
+		return urgency;
 	}
 
-	public void setSolution(String solution)
+	public void setUrgency(String urgency)
 	{
-		this.solution = solution;
+		this.urgency = urgency;
 	}
 
 	public Long getId()

@@ -16,7 +16,7 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 	private UserDAO userDAO = new UserDAO();
 	private static final long	serialVersionUID	= -1196592120783416984L;
 
-	@Override
+	//@Override
 	public UserLoginRegisterResponse login(String name, String password)
 	{
 		User user =  userDAO.loadUser(name, password);
@@ -26,7 +26,7 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 		return new UserLoginRegisterResponse(user);
 	}
 
-	@Override
+	//@Override
 	public UserLoginRegisterResponse register(String name, String password, String email)
 	{
 		boolean loginAvailable = userDAO.userNameAvailable(name);
@@ -43,7 +43,7 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 		return new UserLoginRegisterResponse(user);
 	}
 
-	@Override
+	//@Override
 	public List<User> listUsers()
 	{
 		//TODO sprawdzanie uprawnien ;]
