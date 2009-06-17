@@ -18,7 +18,7 @@ public class Tabs extends LayoutContainer
 	public Tabs()
 	{
 		folder.setWidth(600);
-		folder.setHeight(600);
+		folder.setHeight(800);
 
 		add(folder);
 	}

@@ -13,4 +13,5 @@ public interface IncidentManager extends RemoteService
 	String saveIncident(String name, String description);
 	String addIncident(Incident i);
 	List<Incident> getIncidents();
+	
 }

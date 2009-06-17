@@ -62,21 +62,27 @@ public class IncidentForm extends LayoutContainer
 		simple.add(categoryCB);
 		
 		final SimpleComboBox<String> statusCB = new SimpleComboBox<String>();
-		statusCB.add("test 1");
+		statusCB.add("proceeding");
 		statusCB.setFieldLabel("Status");
 		statusCB.setName("Status");
 		simple.add(statusCB);
 
 		final SimpleComboBox<String> urgencyCB = new SimpleComboBox<String>();
-		urgencyCB.add("test 1");
+		for(int i=0; i<5; i++) {
+			urgencyCB.add(String.valueOf(i));
+		}
+		urgencyCB.setWidth(15);
 		urgencyCB.setFieldLabel("Urgency");
 		urgencyCB.setName("Urgency");
 		simple.add(urgencyCB);
 
 		final SimpleComboBox<String> impactCB = new SimpleComboBox<String>();
-		impactCB.add("test 1");
+		for(int i=0; i<5; i++) {
+			impactCB.add(String.valueOf(i));
+		}
 		impactCB.setFieldLabel("Impact");
 		impactCB.setName("Impact");
+		impactCB.setWidth(15);
 		simple.add(impactCB);
 
 		final TextArea description = new TextArea();
@@ -93,9 +99,13 @@ public class IncidentForm extends LayoutContainer
 			{
 				Incident incident = new Incident();
 				incident.setName(incidentName.getValue());
+				incident.setCategory(categoryCB.getSelection().get(categoryCB.getSelectedIndex()).getValue());
+				incident.setStatus(statusCB.getSelection().get(statusCB.getSelectedIndex()).getValue());
+				incident.setUrgency(urgencyCB.getSelectedIndex()+1);
+				incident.setImpact(impactCB.getSelectedIndex()+1);
 				incident.setDescription(description.getValue());
+				
 				incidentManager.addIncident(incident, new AsyncCallback<String>() {
-
 					public void onFailure(Throwable caught)
 					{
 						Dialog d = new Dialog();
