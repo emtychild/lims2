@@ -15,6 +15,11 @@ import com.extjs.gxt.ui.client.data.ModelData;
 @PersistenceCapable(identityType = IdentityType.DATASTORE)
 public class Incident implements Serializable, ModelData
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
+
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long	id;
@@ -26,12 +31,16 @@ public class Incident implements Serializable, ModelData
 	@Persistent
 	String				category;
 	@Persistent
-	String				status_id;
+	String				status;
 	@Persistent
-	Long				impact_id;
+	int				impact;
 	@Persistent
-	Long				urgency_id;
+	int				urgency;
 
+	public Incident() {
+		
+	}
+	
 	public String getName()
 	{
 		return name;
@@ -68,41 +77,44 @@ public class Incident implements Serializable, ModelData
 	{
 		this.category = category;
 	}
-
-	public String getStatus_id()
+	
+	public String getStatus()
 	{
-		return status_id;
+		return status;
 	}
 
-	public void setStatus_id(String status_id)
+	public void setStatus(String status)
 	{
-		this.status_id = status_id;
+		this.status = status;
 	}
 
-	public Long getImpact_id()
+	public Long getImpact()
 	{
-		return impact_id;
+		return impact;
 	}
 
-	public void setImpact_id(Long impact_id)
+	public void setImpact(Long impact)
 	{
-		this.impact_id = impact_id;
+		this.impact = impact;
 	}
 
-	public Long getUrgency_id()
+	public Long getUrgency()
 	{
-		return urgency_id;
+		return urgency;
 	}
 
-	public void setUrgency_id(Long urgency_id)
+	public void setUrgency(Long urgency)
 	{
-		this.urgency_id = urgency_id;
+		this.urgency = urgency;
 	}
 
+	@SuppressWarnings("unchecked")
 	public <X> X get(String property)
 	{
-		// TODO Auto-generated method stub
+		if(property.equals("name")) return (X) name;
+		if(property.equals("status"))return (X) status;
 		return null;
+		
 	}
 
 	public Map<String, Object> getProperties()
