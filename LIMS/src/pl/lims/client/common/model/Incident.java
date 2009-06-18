@@ -36,6 +36,20 @@ public class Incident implements Serializable, ModelData
 	int				impact;
 	@Persistent
 	int				urgency;
+	@Persistent
+	String userName;
+	
+	
+	
+	public String getUserName()
+	{
+		return userName;
+	}
+
+	public void setUserName(String userName)
+	{
+		this.userName = userName;
+	}
 
 	public Incident() {
 		

@@ -134,7 +134,7 @@ public class KnowledgeDBTab extends LayoutContainer
 			public void componentSelected(ComponentEvent ce)
 			{
 				final String newTag = addTagTB.getValue();
-				if (newTag == null || newTag.isEmpty())
+				if (newTag == null || !newTag.equals(""))
 				{
 					MessageBox.alert("Adding Tag", "Tag must not be empty", null);
 					return;
