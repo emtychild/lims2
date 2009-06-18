@@ -25,14 +25,11 @@ public class Tabs extends LayoutContainer
 		add(folder);
 	}
 
-	
-	
+
 	public User getUser()
 	{
 		return user;
 	}
-
-
 
 	public void setUser(User user)
 	{
@@ -86,8 +83,9 @@ public class Tabs extends LayoutContainer
 
 	private void showUserTabs()
 	{
-		// TODO Auto-generated method stub
-		
+		TabItem incidentsTab = new TabItem("Incidents");
+		incidentsTab.add(new IncidentsTab(this));
+		folder.add(incidentsTab);
 	}
 
 	private void showTechnicianTabs()

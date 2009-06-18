@@ -1,9 +1,13 @@
 package pl.lims.client.forms;
 
+import java.util.List;
+
 import pl.lims.client.Tabs;
 import pl.lims.client.common.model.Incident;
 import pl.lims.client.services.IncidentManager;
 import pl.lims.client.services.IncidentManagerAsync;
+import pl.lims.client.services.SetupManager;
+import pl.lims.client.services.SetupManagerAsync;
 
 import com.extjs.gxt.ui.client.Style.HorizontalAlignment;
 import com.extjs.gxt.ui.client.event.ButtonEvent;
@@ -28,6 +32,7 @@ public class IncidentForm extends LayoutContainer
 {
 	private VerticalPanel	vp;
 	private final IncidentManagerAsync incidentManager = GWT.create(IncidentManager.class);
+	private final SetupManagerAsync setupManager = GWT.create(SetupManager.class);
 	Tabs tabs;
 	
 	public IncidentForm(Tabs tabs)
@@ -59,21 +64,47 @@ public class IncidentForm extends LayoutContainer
 		simple.add(incidentName);
 
 		final SimpleComboBox<String> categoryCB = new SimpleComboBox<String>();
-		categoryCB.add("test 1");
+		setupManager.getCategories(new AsyncCallback<List<String>>() {
+
+			public void onFailure(Throwable caught)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+
+			public void onSuccess(List<String> result)
+			{
+					categoryCB.add(result);
+			}
+		});
 		categoryCB.setFieldLabel("Category");
 		categoryCB.setName("Impact");
 		simple.add(categoryCB);
 		
 		final SimpleComboBox<String> statusCB = new SimpleComboBox<String>();
-		statusCB.add("proceeding");
+		setupManager.getStatusNames(new AsyncCallback<List<String>>(){
+
+			public void onFailure(Throwable caught)
+			{
+				// TODO Auto-generated method stub
+				
+			}
+
+			public void onSuccess(List<String> result)
+			{
+				statusCB.add(result);
+			}
+		});
 		statusCB.setFieldLabel("Status");
 		statusCB.setName("Status");
+		
 		simple.add(statusCB);
 
 		final SimpleComboBox<String> urgencyCB = new SimpleComboBox<String>();
 		for(int i=0; i<5; i++) {
 			urgencyCB.add(String.valueOf(i));
 		}
+		urgencyCB.setSimpleValue("0");
 		urgencyCB.setWidth(15);
 		urgencyCB.setFieldLabel("Urgency");
 		urgencyCB.setName("Urgency");
@@ -83,6 +114,7 @@ public class IncidentForm extends LayoutContainer
 		for(int i=0; i<5; i++) {
 			impactCB.add(String.valueOf(i));
 		}
+		impactCB.setSimpleValue("0");
 		impactCB.setFieldLabel("Impact");
 		impactCB.setName("Impact");
 		impactCB.setWidth(15);
@@ -103,8 +135,8 @@ public class IncidentForm extends LayoutContainer
 			{
 				Incident incident = new Incident();
 				incident.setName(incidentName.getValue());
-				incident.setCategory(categoryCB.getSelection().get(categoryCB.getSelectedIndex()).getValue());
-				incident.setStatus(statusCB.getSelection().get(statusCB.getSelectedIndex()).getValue());
+				incident.setCategory(categoryCB.getSelection().get(0).getValue());
+				incident.setStatus(statusCB.getSelection().get(0).getValue());
 				incident.setUrgency(urgencyCB.getSelectedIndex()+1);
 				incident.setImpact(impactCB.getSelectedIndex()+1);
 				incident.setDescription(description.getValue());
@@ -122,6 +154,7 @@ public class IncidentForm extends LayoutContainer
 						Dialog d = new Dialog();
 						d.addText(result);
 						d.show();
+						
 					}
 				});
 			}
