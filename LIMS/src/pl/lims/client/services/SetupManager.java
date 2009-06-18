@@ -9,6 +9,10 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 public interface SetupManager extends RemoteService
 {
 	String addStatus(String name);
-
+	String removeStatus(String name);
 	List<String> getStatusNames();
+	
+	String addCategory(String name);
+	String removeCategory(String name);
+	List<String> getCategories();
 }

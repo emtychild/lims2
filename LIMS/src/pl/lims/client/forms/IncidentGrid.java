@@ -75,7 +75,7 @@ public class IncidentGrid extends LayoutContainer
 	    
 	    ContentPanel cp = new ContentPanel();  
 	    cp.setBodyBorder(false);  
-	    cp.setHeading("Basic Grid");  
+	    cp.setHeading("Incidents list");  
 	    //cp.setButtonAlign(HorizontalAlignment.CENTER);  
 	    cp.setLayout(new FitLayout());  
 	    cp.setSize(600, 200);  

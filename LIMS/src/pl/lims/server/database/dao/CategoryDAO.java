@@ -7,63 +7,59 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 
+import pl.lims.client.common.model.Category;
 import pl.lims.client.common.model.Status;
 import pl.lims.server.database.PMF;
 
-public class StatusDAO
+public class CategoryDAO
 {
-	private PersistenceManagerFactory pmf = PMF.get();
-	
-	public List<String> listStatusNames()
+	private PersistenceManagerFactory	pmf	= PMF.get();
+
+	public List<String> listCategories()
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-		Query q = pm.newQuery(Status.class);
+		Query q = pm.newQuery(Category.class);
 		List<String> names = new ArrayList<String>();
 		try
 		{
-			List<Status> statusList = (List<Status>) q.execute();
-			for (Status s : statusList)
+			List<Category> categoryList = (List<Category>) q.execute();
+			for (Category s : categoryList)
 			{
 				names.add(s.getName());
 			}
 		}
 		catch (Exception ex)
 		{
-			names.add("cannot retrieve status names ");
+			names.add("cannot retrieve categories list");
 			ex.printStackTrace();
 		}
 		finally
 		{
 			pm.close();
 		}
-		if(!names.contains("New")) // ale obejscie;]
-		{
-			addStatus("New"); // oby tu nic zle nie poszlo
-			names.add(0, "New");
-		}
 		return names;
 	}
-	
-	public String addStatus(String name)
+
+	public String addCategory(String name)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-		Status s = new Status(name);
+		Category s = new Category(name);
 
-		Query q = pm.newQuery(Status.class);
+		Query q = pm.newQuery(Category.class);
 		q.setFilter("name == nameParam");
 		q.declareParameters("String nameParam");
-		
+
 		try
 		{
-			List<Status> existing = (List<Status>)q.execute(name);
-			if(existing.isEmpty())
+			List<Category> existing = (List<Category>) q.execute(name);
+			if (existing.isEmpty())
 			{
 				pm.makePersistent(s);
-				return "Status successfuly added";
+				return "Category successfuly added";
 			}
 			else
 			{
-				return "Such status already exists";
+				return "Such category already exists";
 			}
 		}
 		catch (Throwable ex)
@@ -76,27 +72,27 @@ public class StatusDAO
 		}
 	}
 
-	public String removeStatus(String name)
+	public String removeCategory(String name)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
-		Status s = new Status(name);
+		Category s = new Category(name);
 
-		Query q = pm.newQuery(Status.class);
+		Query q = pm.newQuery(Category.class);
 		q.setFilter("name == nameParam");
 		q.declareParameters("String nameParam");
-		
+
 		try
 		{
-			List<Status> existing = (List<Status>)q.execute(name);
-			if(existing.isEmpty())
+			List<Category> existing = (List<Category>) q.execute(name);
+			if (existing.isEmpty())
 			{
 				return "There is no such item oO";
 			}
 			else
 			{
-				Status st = existing.get(0);
+				Category st = existing.get(0);
 				pm.deletePersistent(st);
-				return "Status removed";
+				return "Category removed";
 			}
 		}
 		catch (Throwable ex)
