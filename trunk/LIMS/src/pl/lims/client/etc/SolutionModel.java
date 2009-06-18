@@ -51,7 +51,7 @@ public class SolutionModel implements ModelData
 		else if(property.equals("msg"))
 			return (X)msg;
 		else if(property.equals("shortmsg"))
-			return (X)(msg.substring(0, 20)+"...");
+			return (X)(msg.substring(0, Math.min(20, msg.length()))+"...");
 		else if(property.equals("date"))
 			return (X)date;
 		return null;
@@ -62,7 +62,7 @@ public class SolutionModel implements ModelData
 		Map<String, Object> res = new HashMap<String, Object>();
 		res.put("tags", tags);
 		res.put("msg", msg);
-		res.put("shortmsg", msg.substring(0,20)+"...");
+		res.put("shortmsg", msg.substring(0,Math.min(20, msg.length()))+"...");
 		res.put("date", date);
 		return res;
 	}
