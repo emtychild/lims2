@@ -370,27 +370,34 @@ public class KnowledgeDBTab extends LayoutContainer
 			@Override
 				public void componentSelected(ComponentEvent ce)
 				{
-					List<String> tags = new ArrayList<String>();
-					String desc = area.getValue();
-					//SimpleDateFormat sdf = new SimpleDateFormat("Y/M/d HH:mm");
-					String date = "09/06/18 14:00";//sdf.format(GregorianCalendar.getInstance());
-					String tagsS = "";
-					for(int i = 0; i < addSolutionTagStore.getCount(); i++)
+					try
 					{
-						tags.add(addSolutionTagStore.getAt(i).getName());
+						List<String> tags = new ArrayList<String>();
+						String desc = area.getValue();
+						//SimpleDateFormat sdf = new SimpleDateFormat("Y/M/d HH:mm");
+						String date = "09/06/18 14:00";//sdf.format(GregorianCalendar.getInstance());
+						String tagsS = "";
+						for(int i = 0; i < addSolutionTagStore.getCount(); i++)
+						{
+							tags.add(addSolutionTagStore.getAt(i).getName());
+							
+						}
 						
+						if(addSolutionTagStore.getCount() > 0)
+							tagsS = addSolutionTagStore.getAt(0).getName();
+						
+						for(int i = 1; i < addSolutionTagStore.getCount(); i++)
+						{
+							tagsS += ","+addSolutionTagStore.getAt(i).getName();
+						}
+						SolutionModel sm = new SolutionModel(tagsS, desc, date);
+						
+						gridStore.add(sm);
 					}
-					
-					if(addSolutionTagStore.getCount() > 0)
-						tagsS = addSolutionTagStore.getAt(0).getName();
-					
-					for(int i = 1; i < addSolutionTagStore.getCount(); i++)
+					catch(Exception e)
 					{
-						tagsS += ","+addSolutionTagStore.getAt(i).getName();
+						e.printStackTrace();
 					}
-					SolutionModel sm = new SolutionModel(tagsS, desc, date);
-					
-					gridStore.add(sm);
 					
 	/*				kdbService.addSolution(desc, tags, new AsyncCallback<Boolean>(){
 						public void onFailure(Throwable caught)
