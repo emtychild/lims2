@@ -1,7 +1,9 @@
 package pl.lims.client.tabs;
 
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import pl.lims.client.common.AddTagResponse;
@@ -64,6 +66,8 @@ public class KnowledgeDBTab extends LayoutContainer
 	private ListStore<ClientTagModel> tagsListStore;
 	
 	private ListStore<ClientTagModel> addSolutionTagStore;
+	
+	ListStore<SolutionModel> gridStore;
 	
 	public KnowledgeDBTab()
 	{
@@ -133,7 +137,7 @@ public class KnowledgeDBTab extends LayoutContainer
 	     PagingLoader loader = new BasePagingLoader(proxy);  
 	     loader.setRemoteSort(true);  
 	   
-	     ListStore<SolutionModel> store = new ListStore<SolutionModel>(loader);  
+	     gridStore = new ListStore<SolutionModel>(loader); 
 	   
 	     final PagingToolBar toolBar = new PagingToolBar(10);  
 	     toolBar.bind(loader);  
@@ -171,7 +175,7 @@ public class KnowledgeDBTab extends LayoutContainer
 	     cp.setWidth(430);
 	     cp.setAutoHeight(true);
 	   
-	     final Grid<SolutionModel> grid = new Grid<SolutionModel>(store, cm);  
+	     final Grid<SolutionModel> grid = new Grid<SolutionModel>(gridStore, cm);  
 	     grid.setBorders(true);  
 	     grid.setAutoExpandColumn("tags");  
 	     
@@ -368,13 +372,27 @@ public class KnowledgeDBTab extends LayoutContainer
 				{
 					List<String> tags = new ArrayList<String>();
 					String desc = area.getValue();
-					
+					//SimpleDateFormat sdf = new SimpleDateFormat("Y/M/d HH:mm");
+					String date = "09/06/18 14:00";//sdf.format(GregorianCalendar.getInstance());
+					String tagsS = "";
 					for(int i = 0; i < addSolutionTagStore.getCount(); i++)
 					{
 						tags.add(addSolutionTagStore.getAt(i).getName());
+						
 					}
 					
-					kdbService.addSolution(desc, tags, new AsyncCallback<Boolean>(){
+					if(addSolutionTagStore.getCount() > 0)
+						tagsS = addSolutionTagStore.getAt(0).getName();
+					
+					for(int i = 1; i < addSolutionTagStore.getCount(); i++)
+					{
+						tagsS += ","+addSolutionTagStore.getAt(i).getName();
+					}
+					SolutionModel sm = new SolutionModel(tagsS, desc, date);
+					
+					gridStore.add(sm);
+					
+	/*				kdbService.addSolution(desc, tags, new AsyncCallback<Boolean>(){
 						public void onFailure(Throwable caught)
 						{
 							MessageBox.alert("Error!", caught.getMessage(),null);
@@ -389,7 +407,7 @@ public class KnowledgeDBTab extends LayoutContainer
 							//TODO dodac do listy
 							Info.display("Solution adding", "Solution added");
 						}
-					});
+					}); */
 				}	
 			});
 			
