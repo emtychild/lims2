@@ -1,6 +1,7 @@
 package pl.lims.client.services;
 
 import java.util.Collection;
+import java.util.List;
 
 import pl.lims.client.common.AddTagResponse;
 
@@ -12,4 +13,5 @@ public interface KnowledgDBService extends RemoteService
 {
 	public AddTagResponse addTag(String name);
 	public Collection<String> getTags();
+	public boolean addSolution(String desc, List<String> tags);
 }

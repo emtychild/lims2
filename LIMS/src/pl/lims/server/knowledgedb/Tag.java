@@ -15,14 +15,14 @@ public class Tag
 	private String name;
 	
 	@Persistent
-	private List<Integer> solutions = new ArrayList<Integer>();
+	private List<Long> solutions = new ArrayList<Long>();
 	
 	public Tag(){}
 	public Tag(String name)
 	{
 		this.name = name;
 	}
-	public Tag(String name, List<Integer> solutions)
+	public Tag(String name, List<Long> solutions)
 	{
 		this.name = name;
 		this.solutions = solutions;
@@ -31,8 +31,14 @@ public class Tag
 	{
 		return name;
 	}
-	public List<Integer> getSolutions()
+	public List<Long> getSolutions()
 	{
 		return solutions;
+	}
+	public void addSolutionId(long solId)
+	{
+		if(solutions == null)
+			solutions = new ArrayList<Long>();
+		solutions.add(solId);
 	}
 }

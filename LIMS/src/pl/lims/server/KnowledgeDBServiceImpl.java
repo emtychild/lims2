@@ -2,10 +2,13 @@ package pl.lims.server;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 
 import pl.lims.client.common.AddTagResponse;
 import pl.lims.client.services.KnowledgDBService;
 import pl.lims.server.database.dao.KnowledgeDBDAO;
+import pl.lims.server.knowledgedb.Solution;
+import pl.lims.server.knowledgedb.Tag;
 import pl.lims.server.knowledgedb.TagsManager;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -35,5 +38,27 @@ public class KnowledgeDBServiceImpl extends RemoteServiceServlet implements Know
 		return res;
 	}
 
-	
+	public boolean addSolution(String desc, List<String> tags)
+	{
+		try{
+			Solution solution = new Solution(desc, tags);
+			db.persist(solution);
+			
+			long id = solution.getId();
+			
+			for(String tagName: tags)
+			{
+				Tag tag = tagsManager.getTag(tagName);
+				solution.addTag(tagName);
+				tag.addSolutionId(id);
+				db.persist(tag);
+			}
+			
+			db.persist(solution);
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return true;
+	}
 }

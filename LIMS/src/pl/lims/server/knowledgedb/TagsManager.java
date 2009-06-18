@@ -38,6 +38,10 @@ public class TagsManager
 	{
 		return tags.keySet();
 	}
+	public Tag getTag(String key)
+	{
+		return tags.get(key);
+	}
     // ************************************
 	private void loadTags()
 	{

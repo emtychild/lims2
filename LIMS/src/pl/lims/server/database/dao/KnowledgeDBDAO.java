@@ -32,7 +32,7 @@ public class KnowledgeDBDAO
 	}
 
 
-	public void persist(Tag t)
+	public void persist(Object t)
 	{
 		PersistenceManager pm = pmf.getPersistenceManager();
 		try
