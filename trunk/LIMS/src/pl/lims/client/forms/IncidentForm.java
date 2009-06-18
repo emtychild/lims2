@@ -1,5 +1,6 @@
 package pl.lims.client.forms;
 
+import pl.lims.client.Tabs;
 import pl.lims.client.common.model.Incident;
 import pl.lims.client.services.IncidentManager;
 import pl.lims.client.services.IncidentManagerAsync;
@@ -27,9 +28,11 @@ public class IncidentForm extends LayoutContainer
 {
 	private VerticalPanel	vp;
 	private final IncidentManagerAsync incidentManager = GWT.create(IncidentManager.class);
-
-	public IncidentForm()
+	Tabs tabs;
+	
+	public IncidentForm(Tabs tabs)
 	{
+		this.tabs = tabs;
 		vp = new VerticalPanel();
 		vp.setSpacing(10);
 	}
@@ -91,6 +94,7 @@ public class IncidentForm extends LayoutContainer
 		description.setHeight(200);
 		simple.add(description);
 
+		
 		Button sendButton = new Button("Report incident");
 		sendButton.addListener(Events.Select, new SelectionListener<ButtonEvent>() {
 
@@ -104,6 +108,7 @@ public class IncidentForm extends LayoutContainer
 				incident.setUrgency(urgencyCB.getSelectedIndex()+1);
 				incident.setImpact(impactCB.getSelectedIndex()+1);
 				incident.setDescription(description.getValue());
+				incident.setUserName(tabs.getUser().getName());
 				
 				incidentManager.addIncident(incident, new AsyncCallback<String>() {
 					public void onFailure(Throwable caught)

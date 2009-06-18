@@ -25,6 +25,22 @@ public class Tabs extends LayoutContainer
 		add(folder);
 	}
 
+	
+	
+	public User getUser()
+	{
+		return user;
+	}
+
+
+
+	public void setUser(User user)
+	{
+		this.user = user;
+	}
+
+
+
 	@Override
 	protected void onLoad()
 	{
@@ -77,7 +93,7 @@ public class Tabs extends LayoutContainer
 	private void showTechnicianTabs()
 	{
 		TabItem incidentsTab = new TabItem("Incidents");
-		incidentsTab.add(new IncidentsTab());
+		incidentsTab.add(new IncidentsTab(this));
 		folder.add(incidentsTab);
 		
 		TabItem knowledgeDB = new TabItem("Knowledge DB");
