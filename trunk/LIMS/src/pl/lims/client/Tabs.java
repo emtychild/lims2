@@ -1,9 +1,11 @@
 package pl.lims.client;
 
+import pl.lims.client.common.model.KnownIncident;
 import pl.lims.client.common.model.User;
 import pl.lims.client.tabs.AboutTab;
 import pl.lims.client.tabs.ConfigurationTab;
 import pl.lims.client.tabs.IncidentsTab;
+import pl.lims.client.tabs.KnowledgeDBTab;
 import pl.lims.client.tabs.UsersTab;
 
 import com.extjs.gxt.ui.client.widget.LayoutContainer;
@@ -18,7 +20,7 @@ public class Tabs extends LayoutContainer
 	public Tabs()
 	{
 		folder.setWidth(600);
-		folder.setHeight(800);
+		folder.setHeight(600);
 
 		add(folder);
 	}
@@ -77,6 +79,10 @@ public class Tabs extends LayoutContainer
 		TabItem incidentsTab = new TabItem("Incidents");
 		incidentsTab.add(new IncidentsTab());
 		folder.add(incidentsTab);
+		
+		TabItem knowledgeDB = new TabItem("Knowledge DB");
+		knowledgeDB.add(new KnowledgeDBTab());
+		folder.add(knowledgeDB);
 	}
 
 	private void showAdminTabs()

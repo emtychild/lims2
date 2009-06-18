@@ -27,6 +27,10 @@
     <servlet-name>setupManager</servlet-name>
     <servlet-class>pl.lims.server.SetupManagerImpl</servlet-class>
   </servlet>
+    <servlet>
+    <servlet-name>knownledgedb</servlet-name>
+    <servlet-class>pl.lims.server.KnowledgeDBServiceImpl</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>greetServlet</servlet-name>
@@ -43,5 +47,9 @@
    <servlet-mapping>
     <servlet-name>userService</servlet-name>
     <url-pattern>/lims/user</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>knownledgedb</servlet-name>
+  	<url-pattern>/lims/kdb</url-pattern>
   </servlet-mapping>
 </web-app>
